@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - JanSaathi</title>
+    <meta name="description" content="JanSaathi Admin Dashboard: Manage civic issues and monitor engagement." />
+    <meta name="author" content="JanSaathi" />
+
+    <meta property="og:title" content="Admin Dashboard - JanSaathi" />
+    <meta property="og:description" content="Manage and monitor civic issues with the JanSaathi Admin Dashboard." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jansaathi" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <style>
+      link[rel="icon"] {
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        accent: '#38BDF8',
+                        background: {
+                            light: '#F8FAFC',
+                            dark: '#0F172A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white dark:bg-gray-900 shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center space-x-2">
+                        <img 
+                            src="/logo.jpg" 
+                            alt="JanSaathi Logo" 
+                            class="h-10 w-10 rounded-full object-cover"
+                        />
+                        <span class="text-2xl font-bold text-primary">JanSaathi</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button class="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
+                    </button>
+                    <!-- Dark Mode Toggle -->
+                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path class="dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                            <path class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </button>
+                    <!-- Profile -->
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 focus:outline-none">
+                            <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=Admin+User" alt="Profile">
+                            <span class="hidden md:block">Admin User</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Welcome Section -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
+                <p class="mt-2 text-gray-600 dark:text-gray-400">Manage and monitor civic issues</p>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Total Issues</h3>
+                        <span class="text-primary">📋</span>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">1,234</div>
+                    <p class="text-gray-600 dark:text-gray-400">Overall count</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Active Issues</h3>
+                        <span class="text-yellow-500">⚡</span>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">45</div>
+                    <p class="text-gray-600 dark:text-gray-400">Currently open</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Resolved Issues</h3>
+                        <span class="text-green-500">✅</span>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">1,189</div>
+                    <p class="text-gray-600 dark:text-gray-400">Successfully closed</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Avg. Resolution Time</h3>
+                        <span class="text-blue-500">⏱️</span>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">2.5</div>
+                    <p class="text-gray-600 dark:text-gray-400">Days to resolve</p>
+                </div>
+            </div>
+
+            <!-- Analytics Charts -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Issues by Category</h3>
+                    <canvas id="categoryChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Resolution Timeline</h3>
+                    <canvas id="timelineChart" class="w-full h-64"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Issues Table -->
+            <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Recent Issues</h2>
+                        <div class="flex space-x-4">
+                            <select class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-800">
+                                <option value="all">All Categories</option>
+                                <option value="pothole">Pothole</option>
+                                <option value="water">Water Supply</option>
+                                <option value="electricity">Electricity</option>
+                                <option value="garbage">Garbage Collection</option>
+                                <option value="streetlight">Street Light</option>
+                            </select>
+                            <select class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-800">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead class="bg-gray-50 dark:bg-gray-800">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">ID</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Location</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">#12345</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">Pothole</td>
+                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Large pothole on Main St</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">Main Street</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
+                                        In Progress
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                                    <button class="text-primary hover:text-primary/80">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">#12344</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">Water Supply</td>
+                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Water leakage in Park Ave</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">Park Avenue</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+                                        Resolved
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                                    <button class="text-primary hover:text-primary/80">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-700 dark:text-gray-300">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">2</span> of <span class="font-medium">45</span> results
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Previous</button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Category Chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pothole', 'Water Supply', 'Electricity', 'Garbage', 'Street Light'],
+                datasets: [{
+                    data: [30, 25, 15, 20, 10],
+                    backgroundColor: [
+                        '#1E3A8A',
+                        '#38BDF8',
+                        '#10B981',
+                        '#F59E0B',
+                        '#EF4444'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Timeline Chart
+        const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+        new Chart(timelineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Issues Reported',
+                    data: [65, 59, 80, 81, 56, 55],
+                    borderColor: '#1E3A8A',
+                    tension: 0.4
+                }, {
+                    label: 'Issues Resolved',
+                    data: [28, 48, 40, 19, 86, 27],
+                    borderColor: '#38BDF8',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

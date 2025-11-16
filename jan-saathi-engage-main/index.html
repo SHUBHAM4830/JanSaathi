@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JanSaathi</title>
+    <meta name="description" content="JanSaathi - A modern civic engagement platform empowering citizens through technology and transparency." />
+    <meta name="author" content="JanSaathi" />
+
+    <meta property="og:title" content="JanSaathi - Your Voice, Your Companion" />
+    <meta property="og:description" content="A modern civic engagement platform empowering citizens through technology and transparency." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jansaathi" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <style>
+      link[rel="icon"] {
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        accent: '#38BDF8',
+                        background: {
+                            light: '#F8FAFC',
+                            dark: '#0F172A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+  </head>
+
+  <body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 min-h-screen">
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
