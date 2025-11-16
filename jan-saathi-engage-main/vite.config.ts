@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  base: process.env.VITE_BASE_PATH||"/anSaathi",
   plugins: [
     react(),
     mode === 'development' &&
